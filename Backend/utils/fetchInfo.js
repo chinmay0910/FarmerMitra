@@ -1,47 +1,42 @@
-const csv = require('csv-parser');
-const fs = require('fs');
+const xlsx = require('xlsx');
 const path = require('path');
 
-// Path to the CSV file stored on the server
-const csvFilePath = path.join(__dirname, '../public/UserData.csv'); // Adjust the path as needed
+// Path to the Excel file stored on the server
+const excelFilePath = path.join(__dirname, '../public/UserData.xlsx'); // Adjust the path as needed
 
 // Utility function to find farm and farmer information based on farmRegistrationNo
 const findFarmAndFarmerByRegistrationNo = (farmRegistrationNo) => {
   console.log(farmRegistrationNo);
   
   return new Promise((resolve, reject) => {
-    let foundData = null;
+    // Load the Excel file
+    const workbook = xlsx.readFile(excelFilePath);
 
-    fs.createReadStream(csvFilePath)
-      .pipe(csv())
-      .on('data', (row) => {
-        
-        if (row.farmRegisterationNo === farmRegistrationNo) {
-          console.log("matched");
-          
-          // Extracting relevant fields from CSV
-          foundData = {
-            farmInformation: row.farmInformation || '',
-            farmLatitude: parseFloat(row.farmLatitude) || 0, // Ensure numeric value or default to 0
-            farmLongitude: parseFloat(row.farmLongitude) || 0, // Ensure numeric value or default to 0
-            farmAddress: row.farmAddress || '',
-            aadhaarNumber: row.aadhaarNumber || '',
-            farmerName: row.farmerName || ''
-          };
-          console.log(row.farmerName);
-          
-        }
-      })
-      .on('end', () => {
-        if (foundData) {
-          resolve(foundData);
-        } else {
-          reject(new Error('Farm registration number not found in CSV.'));
-        }
-      })
-      .on('error', (error) => {
-        reject(error);
-      });
+    // Assuming the data is in the first sheet
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+
+    // Convert the worksheet to JSON format
+    const jsonData = xlsx.utils.sheet_to_json(worksheet);
+
+    // Find the row matching the farm registration number
+    const foundData = jsonData.find((row) => row.farmRegisterationNo === farmRegistrationNo);
+    console.log(foundData);
+    
+    if (foundData) {
+      // Extract relevant fields from the Excel row
+      const farmAndFarmerInfo = {
+        farmInformation: foundData.farmInformation || '',
+        farmLatitude: parseFloat(foundData.farmLatitude) || 0, // Ensure numeric value or default to 0
+        farmLongitude: parseFloat(foundData.farmLongitude) || 0, // Ensure numeric value or default to 0
+        farmAddress: foundData.farmAddress || '',
+        aadhaarNumber: foundData.aadhaarNumber || '',
+        farmerName: foundData.farmerName || ''
+      };
+      console.log(farmAndFarmerInfo.farmAddress);
+      resolve(farmAndFarmerInfo);
+    } else {
+      reject(new Error('Farm registration number not found in Excel.'));
+    }
   });
 };
 

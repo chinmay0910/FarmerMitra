@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const FarmerInfoSchema = new Schema({
   aadhaarNumber: { type: String, required: true },
-  famerName: {
+  farmerName: {
     type: String,
     required: true
   },
@@ -14,8 +14,7 @@ const FarmerInfoSchema = new Schema({
   },
   profileId: {
     type: Schema.Types.ObjectId,
-    ref: 'Profile',  // Reference to the Profile schema
-    required: true
+    ref: 'Profile',
   }
 });
 
