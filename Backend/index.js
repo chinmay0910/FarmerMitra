@@ -14,6 +14,7 @@ app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/auth',require('./routes/auth.js'))
+app.use('/api/agreement',require('./routes/Agreement.js'))
 
 app.listen(port,()=>{
     console.log(`Listening on port: ${port}`)

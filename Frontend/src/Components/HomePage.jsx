@@ -39,7 +39,6 @@ function HomePage() {
           
         </div>
       </div>
-      {/* </Router> */}
     </>
   )
 }
