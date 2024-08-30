@@ -11,6 +11,7 @@ import {
 
 // import of components
 import UserProfile from './Profile';
+import UpcomingContracts from './Farmer/UpcommingEvents';
 
 
 function HomePage() {
@@ -35,6 +36,7 @@ function HomePage() {
             <Route exact path='/' element={<>Helloe</>} />
             <Route exact path='/pay' element={<>Pay</>} />
             <Route exact path='/profile' element={<UserProfile/>} />
+            <Route exact path='/agreement' element={<UpcomingContracts/>} />
           </Routes>
           
         </div>

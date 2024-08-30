@@ -65,7 +65,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/neww', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const contracts = await Agreement.find().populate('companyId');
     res.json(contracts);

@@ -49,12 +49,12 @@ const SideNavbar = () => {
             Dashboard
           </ListItem>
         </Link>
-        <Link to='/pay'>
+        <Link to='/agreements'>
           <ListItem>
             <ListItemPrefix>
               <ShoppingBagIcon className="h-5 w-5" />
             </ListItemPrefix>
-            E-Commerce
+            Contracts
           </ListItem>
         </Link>
         <Link to="/profile">
