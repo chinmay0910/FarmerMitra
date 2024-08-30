@@ -9,6 +9,7 @@ const Farm = require('../model/Farm');
 const Company = require('../model/Company');
 const { findFarmAndFarmerByRegistrationNo } = require('../utils/fetchInfo');
 const { findCompanyByRegistrationNo } = require('../utils/fetchCompanyInfo');
+const fetchuser = require('../middleware/fetchuser');
 
 const router = express.Router();
 
@@ -85,8 +86,7 @@ router.post('/register/company', async (req, res) => {
             companyName: companyInfo.companyName,
             companyInfo: companyInfo.companyInfo
         });
-        console.log(newCompany);
-        
+
         await newCompany.save();
 
         // Check if user already exists
@@ -145,6 +145,20 @@ router.post('/login', async (req, res) => {
         }
     } catch (err) {
         res.status(500).send("Internal Server Error occured while Authennticating")
+    }
+})
+
+// Route 3: route for the api with the route of localhost/api/auth/getuser with a MIDDLEWARE
+router.get('/getuser', fetchuser,async(req, res)=>{
+
+    try {
+        const userId = req.user.id; 
+        const user = await User.findById(userId).select("-password"); 
+        res.send(user);
+
+
+    } catch (err) {
+        res.status(500).send("Internal Server Error occured while getting the user from JWT token || MiddleWare")
     }
 
 

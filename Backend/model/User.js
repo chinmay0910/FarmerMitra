@@ -26,7 +26,7 @@ const UserSchema = new Schema({
     ref: 'Buyer',
     required: function() { return this.role === 'buyer'; }  // Only required if role is buyer
   },
-  date: { 
+  date: {
     type: Date,
     default: Date.now 
   }

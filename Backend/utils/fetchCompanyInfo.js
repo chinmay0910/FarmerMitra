@@ -20,7 +20,6 @@ const findCompanyByRegistrationNo = (companyRegistrationNo) => {
 
     // Find the row matching the company registration number
     const foundData = jsonData.find((row) => row.CINID === companyRegistrationNo);
-    console.log("foundData>> "+foundData.CompanyLocation);
 
     if (foundData) {
       // Extract relevant fields from the Excel row
@@ -28,7 +27,6 @@ const findCompanyByRegistrationNo = (companyRegistrationNo) => {
         companyName: foundData.CompanyName || '',
         companyInfo: foundData.CompanyLocation || ''
       };
-      console.log(companyInfo);
       resolve(companyInfo);
     } else {
       reject(new Error('Company registration number not found in Excel.'));
