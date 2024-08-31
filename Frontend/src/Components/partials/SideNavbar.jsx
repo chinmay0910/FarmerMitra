@@ -49,12 +49,20 @@ const SideNavbar = () => {
             Dashboard
           </ListItem>
         </Link>
-        <Link to='/agreements'>
+        <Link to='/agreement'>
           <ListItem>
             <ListItemPrefix>
               <ShoppingBagIcon className="h-5 w-5" />
             </ListItemPrefix>
             Contracts
+          </ListItem>
+        </Link>
+        <Link to='/createAgreement'>
+          <ListItem>
+            <ListItemPrefix>
+              <ShoppingBagIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Create Agreement
           </ListItem>
         </Link>
         <Link to="/profile">

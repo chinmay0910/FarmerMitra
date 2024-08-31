@@ -5,7 +5,6 @@ const UserProfile = () => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    // Fetch recent data when component mounts
     fetchUserData();
   }, []);
 

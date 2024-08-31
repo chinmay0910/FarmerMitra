@@ -54,7 +54,7 @@ const UpcomingContracts = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': localStorage.getItem("auth-token")
+                    'auth-token': localStorage.getItem("Auth-token")
                 }
             });
             if (response.ok) {
@@ -80,6 +80,10 @@ const UpcomingContracts = () => {
         setFilteredContracts(filtered);
     };
 
+    const handleContractClick = (contractId) => {
+        navigate(`/agreement/${contractId}`);
+    };
+
     const contractsToDisplay = searchQuery ? filteredContracts : contracts;
 
     return (
@@ -92,20 +96,43 @@ const UpcomingContracts = () => {
                 className="border border-gray-300 rounded-md p-2 mb-4 w-full"
             />
             {contractsToDisplay.map((contract, index) => (
-                <div key={index} className="flex flex-col border-2 rounded-2xl p-4 my-8">
+                <div key={index} className="flex flex-col border-2 rounded-2xl p-4 my-8" onClick={() => handleContractClick(contract._id)}>
                     <div className="flex md:flex-row flex-col items-center">
-                        <div>
+                        <div className="md:w-1/4 mb-4 flex justify-center items-center">
+                            <img
+                                src={`http://localhost:5000/uploads/${contract.cropImage}`} // Adjust the URL according to your backend image storage
+                                alt={contract.cropType.join(', ')}
+                                className="w-24 h-24 object-cover rounded-full border-2 border-gray-300"
+                            />
+                        </div>
+                        <div className="md:w-3/4">
                             <Typography variant="h5" gutterBottom>
                                 {contract.contractDescription}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {contract.createdAt} - {contract.applicationDeadline}
+                                {new Date(contract.createdAt).toLocaleDateString()} - {new Date(contract.applicationDeadline).toLocaleDateString()}
                             </Typography>
-                            <Typography variant="body1">{contract.supportServicesProvided}</Typography>
+                            <Typography variant="body1">{contract.supportServicesProvided.join(', ')}</Typography>
+
+                            {/* Display company information */}
+                            <Typography variant="h6" gutterBottom>
+                                Company Details
+                            </Typography>
+                            <Typography variant="body1">
+                                Company Name: {contract.companyId.companyName}
+                            </Typography>
+                            <Typography variant="body1">
+                                Registration No: {contract.companyId.companyRegistrationNo}
+                            </Typography>
+                            <Typography variant="body1">
+                                Location: {contract.companyId.companyInfo}
+                            </Typography>
+
                             <Button
                                 className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg"
                                 onClick={() => handleRSVP(contract._id)}
-                            >'Registered'
+                            >
+                                {/* Show 'Registered' if the user already RSVP'd */}
                                 {/* {contract.registeredFarmers.includes(userId) ? 'Registered' : 'RSVP'} */}
                             </Button>
                         </div>

@@ -6,6 +6,10 @@ const AgreementSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Buyer',  // Reference to the Company schema
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',  // Reference to the Company schema
+  },
   contractDescription: {
     type: String,
     required: true
@@ -59,6 +63,13 @@ const AgreementSchema = new Schema({
   applicationDeadline: {
     type: Date,
     required: true
+  },
+  cropImage: { // Add this field
+    type: String
+  },
+  applicants: { // New field to track applicants
+    type: [Schema.Types.ObjectId],
+    ref: 'User'  // Reference to the User schema
   },
   createdAt: {
     type: Date,

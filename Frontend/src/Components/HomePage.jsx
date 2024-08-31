@@ -12,7 +12,9 @@ import {
 // import of components
 import UserProfile from './Profile';
 import UpcomingContracts from './Farmer/UpcommingEvents';
-
+import CompanyAgreementForm from './Company/CompanyAgreement';
+import ContractDetails from './Farmer/ContractDetails';
+import CompanyContracts from './Company/ContractRegisterations';
 
 function HomePage() {
   const navigate = useNavigate()
@@ -37,6 +39,10 @@ function HomePage() {
             <Route exact path='/pay' element={<>Pay</>} />
             <Route exact path='/profile' element={<UserProfile/>} />
             <Route exact path='/agreement' element={<UpcomingContracts/>} />
+            <Route exact path='/createAgreement' element={<CompanyAgreementForm/>} />
+            <Route exact path='/contract/registerations' element={<CompanyContracts/>} />
+            <Route path="/agreement/:contractId" element={<ContractDetails/>} />
+
           </Routes>
           
         </div>
