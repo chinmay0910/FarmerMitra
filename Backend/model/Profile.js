@@ -17,6 +17,11 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',  // Reference back to the Farmer (User schema)
     required: true
+  },
+  companyDeliveredTO: {
+    type: Schema.Types.ObjectId,
+    ref: 'Buyer',
+    required: true
   }
 });
 

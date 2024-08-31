@@ -9,6 +9,7 @@ import {
 // import of components
 import HomePage from './Components/HomePage';
 import Signin from './Components/SigninPage';
+import Main from './Components/landingPage/HomePage';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <Router>
           <Routes>
             <Route exact path='/*' element={<HomePage />} />
+          <Route exact path='/landing' element={<Main/>} />
             <Route exact path='/signin' element={<Signin />} />
           </Routes>
         </Router>

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const Signin = () => {
+const Signin = ({ role = "Farmer" }) => {
   const apiUrl = import.meta.env.VITE_Backend_URL || "http://localhost:5000";
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -53,7 +53,9 @@ const Signin = () => {
     <div className="relative h-screen flex flex-col items-center bg-gray-50">
       {/* Header */}
       <div className="w-full h-16 bg-green-600 text-white flex justify-center items-center px-4 py-2">
-        <h1 className="text-2xl font-bold ">Join us as a Farmer</h1>
+        <h1 className="text-2xl font-bold">
+          {role === "Buyer" ? "Welcome Buyer" : "Join us as a Farmer"}
+        </h1>
       </div>
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg mt-8">
         <div className="mb-8 text-center">

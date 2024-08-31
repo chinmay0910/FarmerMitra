@@ -1,5 +1,5 @@
 import React from 'react';
-import bgImage from './img/bg-masthead.jpg'; // Importing the image
+import bgImage from '../img/bg-masthead.jpg' // Importing the image
 
 const Masthead = () => (
   <header className="static h-screen flex items-center justify-center text-white">

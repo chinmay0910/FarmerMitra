@@ -65,6 +65,14 @@ const SideNavbar = () => {
             Create Agreement
           </ListItem>
         </Link>
+        <Link to="/contract/registerations">
+          <ListItem>
+            <ListItemPrefix>
+              <UserCircleIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Registerations
+          </ListItem>
+        </Link>
         <Link to="/profile">
           <ListItem>
             <ListItemPrefix>

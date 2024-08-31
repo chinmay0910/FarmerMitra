@@ -87,6 +87,7 @@ const CompanyAgreementForm = () => {
           >
             <MenuItem value="Onion">Onion</MenuItem>
             <MenuItem value="Potato">Potato</MenuItem>
+            <MenuItem value="Potato">Wheat</MenuItem>
             {/* Add more crop types as needed */}
           </Select>
         </FormControl>

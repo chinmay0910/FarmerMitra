@@ -16,6 +16,7 @@ import CompanyAgreementForm from './Company/CompanyAgreement';
 import ContractDetails from './Farmer/ContractDetails';
 import CompanyContracts from './Company/ContractRegisterations';
 
+import Main from './landingPage/main';
 function HomePage() {
   const navigate = useNavigate()
 
