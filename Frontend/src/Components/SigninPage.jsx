@@ -54,14 +54,14 @@ const Signin = ({ role = "Farmer" }) => {
       {/* Header */}
       <div className="w-full h-16 bg-green-600 text-white flex justify-center items-center px-4 py-2">
         <h1 className="text-2xl font-bold">
-          {role === "Buyer" ? "Welcome Buyer" : "Join us as a Farmer"}
+          {/* {role === "Buyer" ? "Welcome Buyer" : "Join us as a Farmer"} */}
+          Join Us
         </h1>
       </div>
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg mt-8">
         <div className="mb-8 text-center">
           <h2 className="text-green-600 text-2xl font-bold mb-2">Sign In</h2>
         </div>
-
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
